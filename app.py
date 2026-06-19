@@ -13,7 +13,9 @@ def test():
         "mensaje": "Railway funciona"
     })
 CORS(app)
-
+@app.route('/')
+def home():
+    return "FUNCIONA ANDREA 123"
 @app.route('/guardar_pedido', methods=['POST'])
 def guardar_pedido():
     data = request.json
