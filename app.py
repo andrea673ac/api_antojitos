@@ -104,9 +104,22 @@ def registro():
 
 @app.route('/menu', methods=['GET'])
 def menu():
-    cursor = db.cursor(dictionary=True)
-    cursor.execute("SELECT * FROM productos WHERE disponible=1")
-    return jsonify(cursor.fetchall())
+
+    try:
+        cursor = db.cursor(dictionary=True)
+
+        cursor.execute(
+            "SELECT * FROM productos WHERE disponible=1"
+        )
+
+        datos = cursor.fetchall()
+
+        return jsonify(datos)
+
+    except Exception as e:
+        return jsonify({
+            "error": str(e)
+        }), 500
 
 @app.route('/ingredientes_all', methods=['GET'])
 def ingredientes_all():
