@@ -33,6 +33,11 @@ def guardar_pedido():
 
 import os
 
+print("HOST:", os.getenv("MYSQLHOST"))
+print("USER:", os.getenv("MYSQLUSER"))
+print("DB:", os.getenv("MYSQLDATABASE"))
+print("PORT:", os.getenv("MYSQLPORT"))
+
 db = mysql.connector.connect(
     host=os.getenv("MYSQLHOST"),
     user=os.getenv("MYSQLUSER"),
@@ -41,7 +46,6 @@ db = mysql.connector.connect(
     port=int(os.getenv("MYSQLPORT")),
     autocommit=True
 )
-
 def reconectar():
     global db
 
