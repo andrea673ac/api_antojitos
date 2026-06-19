@@ -29,12 +29,16 @@ def guardar_pedido():
     return jsonify({"ok": True})
 
 # 🔗 CONEXIÓN A MYSQL
-# 🔗 CONEXIÓN A MYSQL
+# 🔗 CONEXIÓN MYSQL RAILWAY
+
+import os
+
 db = mysql.connector.connect(
-    host="localhost",
-    user="root",
-    password="root",
-    database="antojitos",
+    host=os.getenv("MYSQLHOST"),
+    user=os.getenv("MYSQLUSER"),
+    password=os.getenv("MYSQLPASSWORD"),
+    database=os.getenv("MYSQLDATABASE"),
+    port=int(os.getenv("MYSQLPORT")),
     autocommit=True
 )
 
@@ -47,18 +51,17 @@ def reconectar():
                 attempts=3,
                 delay=2
             )
-    except:
-       import os
-import mysql.connector
 
-db = mysql.connector.connect(
-    host=os.getenv("MYSQLHOST"),
-    user=os.getenv("MYSQLUSER"),
-    password=os.getenv("MYSQLPASSWORD"),
-    database=os.getenv("MYSQLDATABASE"),
-    port=int(os.getenv("MYSQLPORT")),
-    autocommit=True
-)
+    except Exception:
+
+        db = mysql.connector.connect(
+            host=os.getenv("MYSQLHOST"),
+            user=os.getenv("MYSQLUSER"),
+            password=os.getenv("MYSQLPASSWORD"),
+            database=os.getenv("MYSQLDATABASE"),
+            port=int(os.getenv("MYSQLPORT")),
+            autocommit=True
+        )
 # =========================
 # 🔐 LOGIN
 # =========================
