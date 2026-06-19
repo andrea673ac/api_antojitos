@@ -3,9 +3,6 @@ from flask_cors import CORS
 import mysql.connector
 
 app = Flask(__name__)
-@app.route('/')
-def home():
-    return "API Antojitos funcionando"
 @app.route('/test')
 def test():
     return jsonify({
