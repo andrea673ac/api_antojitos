@@ -111,28 +111,12 @@ def registro():
 # 🍔 MENÚ USUARIO (solo disponibles)
 # =========================
 
-@app.route('/menu', methods=['GET'])
+@app.route('/menu')
 def menu():
-
-    try:
-        reconectar()
-
-        cursor = db.cursor(dictionary=True)
-
-        cursor.execute(
-            "SELECT * FROM productos WHERE disponible=1"
-        )
-
-        datos = cursor.fetchall()
-
-        return jsonify(datos)
-
-    except Exception as e:
-
-        return jsonify({
-            "error": str(e)
-        }), 500
-
+    return jsonify({
+        "status": "ok",
+        "mensaje": "La API funciona"
+    })
 @app.route('/ingredientes_all', methods=['GET'])
 def ingredientes_all():
 
